@@ -1,0 +1,39 @@
+{%extends "layout.html"%}
+{%block body%}
+<h1 class = "right-bar"> Edit Details </h1>
+<form action="/edit_user/{{ current_user.id }}" class="register" method="post" enctype="multipart/form-data">
+
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.name.label }}
+        {{ form.name(class="input", placeholder = "Enter Name") }}
+    </div>
+    <div>
+        {{ form.email.label }}
+        {{ form.email(class="input", placeholder = "Enter Email") }}
+    </div>
+    <div>
+        {{ form.username.label }}
+        {{ form.username(class="input", placeholder = "Enter Username") }}
+    </div>
+    <div>
+        {{ form.password.label }}
+        {{ form.password(class="input", placeholder = "Enter password") }}
+    </div>
+    <div>
+        {{ form.confirm_password.label }}
+        {{ form.confirm_password(class="input", placeholder = "Confirm Password") }}
+    </div>
+    <div>
+        {{ form.about.label }}
+        {{ form.about(class="input", placeholder = "About Yourself") }}
+    </div>
+    <div>
+        {{ form.profile.label }}
+        {{ form.profile(class="input", placeholder = "Add Profile Picture") }}
+    </div>
+    <div>
+        {{ form.submit(class="submit", value="Save Changes") }}
+    </div>
+</form>
+{%endblock%}

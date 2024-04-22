@@ -1,0 +1,47 @@
+{%extends "layout.html"%}
+{%block body%}
+    <section class="home">
+        <div class="home-section">
+
+            <div class="text">
+                <i class="bi bi-heart"></i>
+                <a href="#">Sign UP</a>
+            </div>
+    </section>
+    
+  
+        <form action="/register" class="register" method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.name.label }}
+                {{ form.name(class="input", placeholder = "Enter Name") }}
+            </div>
+            <div>
+                {{ form.email.label }}
+                {{ form.email(class="input", placeholder = "Enter Email") }}
+            </div>
+            <div>
+                {{ form.username.label }}
+                {{ form.username(class="input", placeholder = "Enter Username") }}
+            </div>
+            <div>
+                {{ form.password.label }}
+                {{ form.password(class="input", placeholder = "Enter Password") }}
+            </div>
+            <div>
+                {{ form.confirm_password.label }}
+                {{ form.confirm_password(class="input", placeholder = "Confirm Password") }}
+            </div>
+            <div>
+                {{ form.about.label }}
+                {{ form.about(class="input", placeholder = "Write about your self") }}
+            </div>
+            <div>
+                {{ form.profile.label }}
+                {{ form.profile(class="input", placeholder = "Add Profile Picture") }}
+            </div>
+            <div>
+                {{ form.submit(class="submit", value="Sign up") }}
+            </div>
+        </form>
+{%endblock%}

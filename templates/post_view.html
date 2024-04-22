@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{%block body%}
+
+    <section class="home">
+        <div class="home-section">
+
+            <div class="text">
+                <i class="bi bi-heart"></i>
+                <a href="#">POST</a>
+            </div>
+    </section>
+    <!-- BLOG SECTION -->
+    <div class="bar">
+        <section class="post-view">
+            {% if post %}
+            <div class="post-author">
+                <div class="date">{{ post.date }}</div>
+                <div class="author">{{ post.author }}</div>
+                <h1 class="header-text margin-2">{{ post.title }}</h1>
+            </div>
+            <div class="blog-container content-img">
+                
+                <p>{{ post.content | safe }}</p>
+            </div>
+        {% endif %}
+        
+    </section>
+    <!--Comment - Section -->
+    <div class="comment-container">
+        <div class="comment-right-bar">
+            <div id="disqus_thread"></div>
+            <script>
+                /**
+                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                /*
+                var disqus_config = function () {
+                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                };
+                */
+                (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://blogger-io-2.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </div>
+  {%endblock%}
+  {% block scripts %}
+    {{ super() }}
+    {{ ckeditor.load() }}
+    <script>
+        // Include custom CSS file in CKEditor configuration
+        CKEDITOR.config.contentsCss = '/static/css/style.css';
+    </script>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block body %}
+    <section class="home">
+        <div class="home-section">
+            <div class="text">
+                <i class="bi bi-heart"></i>
+                <a href="blog.html">BLOG</a>
+            </div>
+        </div>
+    </section>
+    <!-- BLOG SECTION -->
+    <section class="blog-post">
+        <div class="blog-container">
+            {% for post in posts %}
+            <div class="box">
+                <div class="blog-img">
+                    {% if post.thumbnail %}
+                    <img src="{{ url_for('display_image', filename=post.thumbnail) }}" alt="">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='img/default.png') }}" alt="">
+                    {% endif %}
+                </div>
+                <div class="text card-text">
+                    <span>{{ post.date }} | {{ post.category }}</span>
+                    <a href="post_view/{{post.slug}}" class="post-title">{{ post.title }}</a>
+                </div>
+            
+                <a href="post_view/{{ post.slug }}"><i class="bi bi-book  blog-btn"></i>read more</a>
+                {% if current_user.is_authenticated and post.poster_id == current_user.id %}
+                <a href="edit_post/{{ post.slug }}" class = "blog-i"><i class="bi bi-pen  blog-btn"></i>Edit</a>
+                <a href="delete_post/{{ post.slug }}"class = "blog-i"><i class="bi bi-trash  blog-btn"></i>Delete</a>
+                
+                {% endif %}
+            </div>
+            {% endfor %}
+           
+        </div>
+</div>
+        
+<div class="bottom-content">
+    {% if posts.has_prev is not none %}
+    <a href="{{ url_for('blog', page=posts.prev_num) }}" class="pagination-link"><i class="bi bi-arrow-left icons"></i></a>
+  {% endif %}
+
+  {% if posts.has_next is not none %}
+    <a href="{{ url_for('blog', page=posts.next_num) }}" class="pagination-link"><i class="bi bi-arrow-right icons"></i></a>
+  {% endif %}
+    </section>
+  
+    
+       
+   
+   
+
+ {% endblock %}

@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{%block body%}
+    <section class="home">
+        <div class="home-section">
+           
+            <div class="text">
+                <i class="bi bi-heart"></i>
+                <a href="#">ADD POST</a>
+            </div>
+    </section>
+    <!-- Table -->
+    <div class = "addpost_container">
+    <form action="/addpost" class="add_post_form" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.title.label }}
+            {{ form.title(class="input") }}
+        </div>
+        <div>
+            {{ form.slug.label }}
+            {{ form.slug(class="input") }}
+        </div>
+        <div>
+            {{ form.author.label }}
+            {{ form.author(class="input") }}
+        </div>
+        <div>
+            {{ form.category.label }}
+            {{ form.category(class="input") }}
+        </div>
+        <div>
+            {{ form.content.label }}
+            {{ form.content(class="input content-img",row  = 12) }}
+        </div>
+        <div>
+            {{ form.thumbnail.label }}
+            {{ form.thumbnail(class="input") }}
+        </div>
+        <div>
+            {{ form.submit(class="submit", value="Publish Post") }}
+        </div>
+    </form>
+   {{ckeditor.load()}}
+   {{ckeditor.config(name = "content")}}
+</div>
+
+
+ {%endblock%}

@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+{%block body%}
+    <section class="home">
+        <div class="home-section">
+
+            <div class="text">
+                <i class="bi bi-heart"></i>
+                <a href="/">HOME</a>
+            </div>
+        </div>
+    </section>
+    <!-- BLOG SECTION -->
+    <div class="bar">
+        <section class="blog">
+            <div class="blog-container">
+                {% for item in post%}
+                <div class="box">
+                    <div class="blog-img">
+                        {% if item.thumbnail %}
+                        <img src="{{ url_for('display_image', filename=item.thumbnail) }}" alt="{{item.title}}">
+                        {% else %}
+                        <img src="{{ url_for('static', filename='img/default.png') }}" alt="{{item.title}}">
+                        {% endif %}
+                    
+                    </div>
+                    <div class="text card-text">
+                        <span>{{item.date}} | {{item.category}}</span>
+                        <a href="post_view/{{item.slug}}" class="post-title">
+                            <h2>{{item.title}}</h2>
+                        </a>
+                    </div>
+                </div>
+                {%endfor%}      
+            </div>
+        </section>
+        <!--- Right Bar -->
+        <div class="right-bar">
+            <h2 class = "header-text">New Post</h2>
+            <div class="box">
+             
+               {%for item in newposts%}
+                <div class="blog-img">
+                    {% if item.thumbnail %}
+                    <img src="{{ url_for('display_image', filename=item.thumbnail) }}" alt="{{item.title}}">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='img/default.png') }}" alt="{{item.title}}">
+                    {% endif %}
+                </div>
+                <div class="text card-text">
+                    <span>{{item.date}} | {{item.category}}</span>
+                    <a href="post_view/{{item.slug}}" class="post-title">
+                        <h2 class = "header-text">{{item.title}}</h2>
+                    </a>
+                </div>
+                {%endfor%}
+            </div>
+          
+          
+            <div class="box">
+                {%for item in latestpost%}
+                <li class="post-list">
+                    
+                        <div class="list">
+                            <div class="list-pic">
+                                    {% if item.thumbnail %}
+                                    <img src="{{ url_for('display_image', filename=item.thumbnail) }}" alt="{{item.title}}">
+                                    {% else %}
+                                    <img src="{{ url_for('static', filename='img/default.png') }}" alt="{{item.title}}">
+                                    {% endif %}
+                            </div>
+                            <div class="list-desc">
+                                <a href="post_view/{{item.slug}}"><h4>{{item.title}}</h4></a>
+                               {{item.content[50:70]|safe}}
+                            </div>
+                        </div>
+                    
+                </li>
+                <hr>
+                {%endfor%}
+            </div>
+            <div class="box">
+                <ul class="post-list">
+                    <h2 class="text">CATEGORIES</h2>
+                    {% for cat in cat_list %}
+                    <div class = "category">
+                      <a href = "category/{{ cat }}" class = "submit">{{cat}}</a>
+                    </div>
+                      <hr>
+                    {% endfor %}
+                  </ul>
+                
+            </div>
+            
+       
+{%endblock%}

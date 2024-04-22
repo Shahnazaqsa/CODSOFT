@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+    <section class="home">
+        <div class="home-section">
+            <div class="text">
+                <i class="bi bi-heart"></i>
+                <a href="blog.html">Category</a>
+            </div>
+        </div>
+    </section>
+
+  <section class = "blog-post">
+    <div class="blog-container">
+        {%for items in cat_list%}
+        <a href = "category/{{items}}" class = "submit">{{items}}</a>
+        {%endfor%}
+    </div>
+</section>
+ {% endblock %}

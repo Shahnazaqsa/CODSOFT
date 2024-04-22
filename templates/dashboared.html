@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{%block body%}
+
+    <section class="home">
+        <div class="home-section">
+
+            <div class="text">
+                <i class="bi bi-heart"></i>
+                <a href="dashboared.html">Dashboared</a>
+            </div>
+            
+
+        </div>
+    </section>
+    <!-- Table -->
+    <main class="table blog">
+        <section class="header-table">
+            MANAGE POSTS
+        </section>
+        <section class="body-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>sno</th>
+                        <th>Name</th>
+                        <th>slug</th>
+                        <th>Date</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                        <tbody>
+                            
+                    {% for post in posts %}
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td class="table-link"><a href="/post_view/{{ post.slug }}" class = "text">{{ post.title }}</a></td>
+                        <td>{{ post.slug }}</td>
+                        <td>{{ post.date }}</td>
+                        <td><a href="edit_post/{{ post.slug }}"><button class=" green">Edit</button></a></td>
+                        <td><a href="delete_post/{{ post.slug }}"><button class="red">Delete</button></a></td>
+                    </tr>
+                    {% endfor %}
+                        </tbody>
+            </table>
+        </section>
+        <div class = "logout">
+            
+            <a href = "/logout"class = "logout-btn red"  > LOGOUT <a/>
+            <a href = "/addpost" class = "logout-btn" > ADD POST<a/>
+            
+        </div>
+    </main>
+  
+   
+    
+    </div>
+    <div class="right-bar">
+        <div class="user-profile">
+            <div class="user-img">
+                {% if current_user.profile%}
+                <img src="static/img/{{current_user.profile}}" alt="...">
+                {% else %}
+                <img src="{{url_for('static',filename = 'img/defaultuser.png')}}" alt="...">
+                {%endif%}
+                <div class="profile-suggestion">Profile</div>
+            </div>
+            <div class="user-name">Name   : {{current_user.name}}</div>
+            <div class="user-about">About :{{current_user.about}}</div>
+            <div class="user-edit-button">
+                <a href="/edit_user/{{current_user.id}}"><button>Edit-Profile</button></a>
+            </div>
+        </div>
+
+ {%endblock%}
